@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eternal Bond of Love - Valentine Proposal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes:wght@400&family=Playfair+Display:wght@400;700&family=Cinzel+Decorative:wght@400;700&family=Allura:wght@400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-red: #c41e3a;
+            --burgundy: #5c0a1a;
+            --dark-burgundy: #3d0814;
+            --blush-pink: #f4d5d8;
+            --champagne: #f5f1de;
+            --gold: #d4af37;
+            --light-gold: #e8d5a8;
+            --soft-white: #fef9f5;
+            --shadow-color: rgba(60, 8, 20, 0.4);
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* ===== INTRO SCENE ===== */
+        .intro-container {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--dark-burgundy) 0%, var(--burgundy) 25%, #8b1538 50%, var(--burgundy) 75%, var(--dark-burgundy) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 10;
+            transition: opacity 0.8s ease, z-index 0.8s ease;
+        }
+
+        .intro-container.hidden {
+            opacity: 0;
+            z-index: 5;
+        }
+
+        .intro-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 20% 50%, rgba(196, 30, 58, 0.15) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 80%, rgba(139, 21, 56, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        /* Floating Hearts Background */
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            opacity: 0.08;
+            font-size: 4rem;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+
+        .intro-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Main Title Animation */
+        .main-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(3rem, 8vw, 6rem);
+            color: #fff;
+            margin-bottom: 2rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4),
+                        0 0 40px rgba(196, 30, 58, 0.6);
+            opacity: 0;
+            animation: slideDown 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+                       sway 4s ease-in-out 2.5s infinite;
+            line-height: 1.2;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(1deg); }
+        }
+
+        /* Secondary Text */
+        .proposal-text {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: #fff;
+            font-weight: 400;
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: fadeInUp 1.5s ease-out 3.5s forwards;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Button Container */
+        .button-container {
+            display: flex;
+            gap: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1.5s ease-out 4.5s forwards;
+            flex-wrap: wrap;
+            justify-content: center;
+            z-index: 5;
+            position: relative;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            font-family: 'Poppins', sans-serif;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+            z-index: -1;
+        }
+
+        .btn:active::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, #ff1744 0%, #c41e3a 50%, #8b1538 100%);
+            color: white;
+            box-shadow: 0 8px 25px rgba(196, 30, 58, 0.5),
+                       inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                       0 0 30px rgba(255, 23, 68, 0.4);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-yes:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(196, 30, 58, 0.6),
+                       0 0 50px rgba(255, 23, 68, 0.5);
+        }
+
+        .btn-yes:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        .btn-no {
+            background: linear-gradient(135deg, #9c27b0 0%, #6a1b9a 50%, #4a148c 100%);
+            color: white;
+            box-shadow: 0 8px 25px rgba(106, 27, 154, 0.5),
+                       inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                       0 0 20px rgba(156, 39, 176, 0.3);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-no:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(106, 27, 154, 0.6),
+                       0 0 40px rgba(156, 39, 176, 0.4);
+        }
+
+        .btn-no:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        /* Response Text */
+        .response-text {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1rem, 2.5vw, 1.6rem);
+            color: #ffd700;
+            text-align: center;
+            margin-top: 2rem;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+            transition: opacity 0.6s ease;
+            line-height: 1.6;
+            white-space: pre-line;
+            max-width: 90%;
+        }
+
+        /* ===== CERTIFICATE SCENE ===== */
+        .certificate-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f4d5d8 0%, #f5f1de 50%, #fef9f5 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            overflow-y: auto;
+            z-index: 20;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.8s ease;
+        }
+
+        .certificate-container.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Hearts Container for falling hearts */
+        #heartsContainer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 15;
+        }
+
+        .falling-heart {
+            position: absolute;
+            opacity: 0.75;
+            pointer-events: none;
+        }
+
+        /* Certificate */
+        .certificate {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            aspect-ratio: 1.4 / 1;
+            background: linear-gradient(135deg, #fef9f5 0%, #f5f1de 50%, #f4d5d8 100%);
+            border-radius: 20px;
+            padding: clamp(2rem, 5vw, 4rem);
+            box-shadow: 0 30px 80px rgba(60, 8, 20, 0.25),
+                       inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            animation: certificateFadeIn 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes certificateFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* Golden Border */
+        .certificate::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 3px solid transparent;
+            background: linear-gradient(135deg, #d4af37 0%, #e8d5a8 50%, #d4af37 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            border-radius: 20px;
+            padding: 8px;
+            opacity: 0.7;
+        }
+
+        /* Decorative Corner Elements */
+        .corner-decoration {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--gold);
+            opacity: 0.4;
+        }
+
+        .corner-tl { top: 20px; left: 20px; border-right: none; border-bottom: none; }
+        .corner-tr { top: 20px; right: 20px; border-left: none; border-bottom: none; }
+        .corner-bl { bottom: 20px; left: 20px; border-right: none; border-top: none; }
+        .corner-br { bottom: 20px; right: 20px; border-left: none; border-top: none; }
+
+        /* Floral Bouquet */
+        .floral-bouquet {
+            position: absolute;
+            left: 2rem;
+            bottom: 2rem;
+            width: 120px;
+            height: 150px;
+            opacity: 0;
+            animation: floralFadeIn 1.5s ease-out 0.8s forwards,
+                       floralSway 4s ease-in-out 2.3s infinite;
+            filter: drop-shadow(0 4px 8px rgba(196, 30, 58, 0.2));
+        }
+
+        .floral-bouquet svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        @keyframes floralFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes floralSway {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(2deg); }
+        }
+
+        /* Certificate Content */
+        .certificate-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .cert-title {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            color: var(--burgundy);
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeInDown 1s ease-out 0.3s forwards;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cert-body {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            color: var(--dark-burgundy);
+            line-height: 1.8;
+            max-width: 90%;
+            font-weight: 400;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.6s forwards;
+        }
+
+        .names-highlight {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(1.4rem, 3vw, 2.2rem);
+            color: var(--primary-red);
+            font-weight: 400;
+            opacity: 1;
+            animation: glowPulse 2s ease-in-out infinite;
+            text-shadow: 0 0 15px rgba(196, 30, 58, 0.3);
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { 
+                text-shadow: 0 0 15px rgba(196, 30, 58, 0.3);
+            }
+            50% { 
+                text-shadow: 0 0 30px rgba(196, 30, 58, 0.6);
+            }
+        }
+
+        .cert-footer {
+            display: flex;
+            justify-content: space-around;
+            width: 90%;
+            margin-top: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1.2s forwards;
+        }
+
+        .signature-block {
+            text-align: center;
+            flex: 1;
+        }
+
+        .signature-name {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            color: var(--primary-red);
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1s forwards;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .signature-line {
+            width: 120px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 1rem auto 0.5rem;
+            border-bottom: 1px solid var(--gold);
+        }
+
+        .signature-label {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            color: var(--burgundy);
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .btn {
+                padding: 0.8rem 1.8rem;
+                font-size: 1rem;
+            }
+
+            .button-container {
+                gap: 1rem;
+            }
+
+            .floral-bouquet {
+                width: 80px;
+                height: 100px;
+                left: 1rem;
+                bottom: 1rem;
+            }
+
+            .cert-footer {
+                gap: 1rem;
+            }
+
+            .certificate {
+                padding: 1.5rem;
+            }
+
+            .corner-decoration {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-title {
+                font-size: 2.2rem;
+            }
+
+            .proposal-text {
+                font-size: 1.1rem;
+            }
+
+            .button-container {
+                flex-direction: column;
+                width: 100%;
+                max-width: 280px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .certificate {
+                aspect-ratio: auto;
+                min-height: 600px;
+                gap: 1rem;
+            }
+
+            .cert-footer {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .signature-block {
+                margin: 1rem 0;
+            }
+
+            .response-text {
+                font-size: 0.9rem;
+                min-height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- INTRO SCENE -->
+    <div class="intro-container" id="introContainer">
+        <div class="floating-hearts" id="floatingHearts"></div>
+
+        <div class="intro-content">
+            <h1 class="main-title">Happy Valentine's Day ❤️</h1>
+            <p class="proposal-text">Will you be my Valentine?</p>
+            <div class="button-container">
+                <button class="btn btn-yes" id="yesBtn">YES ❤️</button>
+                <button class="btn btn-no" id="noBtn">NO 💔</button>
+            </div>
+            <div class="response-text" id="responseText"></div>
+        </div>
+    </div>
+
+    <!-- CERTIFICATE SCENE -->
+    <div class="certificate-container" id="certificateContainer">
+        <div class="certificate" id="certificate">
+            <div class="corner-decoration corner-tl"></div>
+            <div class="corner-decoration corner-tr"></div>
+            <div class="corner-decoration corner-bl"></div>
+            <div class="corner-decoration corner-br"></div>
+
+            <div class="floral-bouquet">
+                <svg viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Stems -->
+                    <path d="M 60 150 Q 55 130 50 110 Q 48 90 50 70" stroke="#2d5a2d" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                    <path d="M 60 150 Q 60 130 60 110 Q 60 90 60 70" stroke="#2d5a2d" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                    <path d="M 60 150 Q 65 130 70 110 Q 72 90 70 70" stroke="#2d5a2d" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                    
+                    <!-- Left side stems -->
+                    <path d="M 60 150 Q 45 120 35 90 Q 30 75 32 60" stroke="#2d5a2d" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    <path d="M 60 150 Q 40 125 25 100 Q 18 85 20 70" stroke="#2d5a2d" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    
+                    <!-- Right side stems -->
+                    <path d="M 60 150 Q 75 120 85 90 Q 90 75 88 60" stroke="#2d5a2d" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    <path d="M 60 150 Q 80 125 95 100 Q 102 85 100 70" stroke="#2d5a2d" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    
+                    <!-- Leaves -->
+                    <ellipse cx="45" cy="110" rx="6" ry="12" fill="#3d7a3d" opacity="0.7" transform="rotate(-35 45 110)"/>
+                    <ellipse cx="75" cy="110" rx="6" ry="12" fill="#3d7a3d" opacity="0.7" transform="rotate(35 75 110)"/>
+                    <ellipse cx="30" cy="95" rx="5" ry="10" fill="#3d7a3d" opacity="0.6" transform="rotate(-45 30 95)"/>
+                    <ellipse cx="90" cy="95" rx="5" ry="10" fill="#3d7a3d" opacity="0.6" transform="rotate(45 90 95)"/>
+                    
+                    <!-- Center Rose (dark red) -->
+                    <circle cx="60" cy="50" r="12" fill="#8b1538"/>
+                    <circle cx="60" cy="50" r="10" fill="#b81c4a"/>
+                    <ellipse cx="55" cy="45" rx="5" ry="6" fill="#c41e3a" opacity="0.8"/>
+                    <ellipse cx="65" cy="45" rx="5" ry="6" fill="#c41e3a" opacity="0.8"/>
+                    <ellipse cx="60" cy="40" rx="6" ry="5" fill="#d4324f" opacity="0.9"/>
+                    
+                    <!-- Left Roses -->
+                    <circle cx="40" cy="65" r="10" fill="#8b1538"/>
+                    <circle cx="40" cy="65" r="8" fill="#b81c4a"/>
+                    <ellipse cx="36" cy="61" rx="4" ry="5" fill="#c41e3a" opacity="0.8"/>
+                    <ellipse cx="44" cy="61" rx="4" ry="5" fill="#c41e3a" opacity="0.8"/>
+                    
+                    <circle cx="28" cy="82" r="9" fill="#8b1538"/>
+                    <circle cx="28" cy="82" r="7" fill="#b81c4a"/>
+                    <ellipse cx="25" cy="79" rx="3.5" ry="4" fill="#c41e3a" opacity="0.8"/>
+                    <ellipse cx="31" cy="79" rx="3.5" ry="4" fill="#c41e3a" opacity="0.8"/>
+                    
+                    <!-- Right Roses -->
+                    <circle cx="80" cy="65" r="10" fill="#8b1538"/>
+                    <circle cx="80" cy="65" r="8" fill="#b81c4a"/>
+                    <ellipse cx="76" cy="61" rx="4" ry="5" fill="#c41e3a" opacity="0.8"/>
+                    <ellipse cx="84" cy="61" rx="4" ry="5" fill="#c41e3a" opacity="0.8"/>
+                    
+                    <circle cx="92" cy="82" r="9" fill="#8b1538"/>
+                    <circle cx="92" cy="82" r="7" fill="#b81c4a"/>
+                    <ellipse cx="89" cy="79" rx="3.5" ry="4" fill="#c41e3a" opacity="0.8"/>
+                    <ellipse cx="95" cy="79" rx="3.5" ry="4" fill="#c41e3a" opacity="0.8"/>
+                    
+                    <!-- Top accent roses -->
+                    <circle cx="50" cy="45" r="8" fill="#a01a45"/>
+                    <circle cx="50" cy="45" r="6" fill="#b81c4a"/>
+                    <ellipse cx="48" cy="42" rx="3" ry="4" fill="#c41e3a" opacity="0.8"/>
+                    
+                    <circle cx="70" cy="45" r="8" fill="#a01a45"/>
+                    <circle cx="70" cy="45" r="6" fill="#b81c4a"/>
+                    <ellipse cx="72" cy="42" rx="3" ry="4" fill="#c41e3a" opacity="0.8"/>
+                    
+                    <!-- Ribbon -->
+                    <path d="M 35 140 Q 45 145 60 145 Q 75 145 85 140" stroke="#d4af37" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.8"/>
+                    <path d="M 35 143 Q 45 148 60 148 Q 75 148 85 143" stroke="#e8d5a8" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+                </svg>
+            </div>
+
+            <div class="certificate-content">
+                <h2 class="cert-title">Eternal Bond of Love</h2>
+                <p class="cert-body">
+                    This certifies that <span class="names-highlight">Rohan</span> and <span class="names-highlight">Maitri</span> are bound to be each other, destined to belong only to one another, forever intertwined in heart, soul, and existence. No distance, no time, no force shall separate what is meant to be — for they are written in each other's fate.
+                </p>
+                <div class="cert-footer">
+                    <div class="signature-block">
+                        <div class="signature-name">Maitri</div>
+                        <div class="signature-line"></div>
+                        <div class="signature-label">His Forever</div>
+                    </div>
+                    <div class="signature-block">
+                        <div class="signature-name">Rohan</div>
+                        <div class="signature-line"></div>
+                        <div class="signature-label">Her Forever</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hearts Container for falling hearts -->
+    <div id="heartsContainer"></div>
+
+    <script>
+        let noClickCount = 0;
+        let heartIntervalId = null;
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const responseText = document.getElementById('responseText');
+        const introContainer = document.getElementById('introContainer');
+        const certificateContainer = document.getElementById('certificateContainer');
+        const heartsContainer = document.getElementById('heartsContainer');
+
+        const responses = [
+            "Will you be my Valentine?",
+            "Kya yaar hauli aisa nahi chalta 😭\nWill you be my Valentine 🥺?",
+            "Aisa karogi mommy 🥺\nChalo dobara try karte…\nWill you be my Valentine 🤗💕?",
+            "Meri achi baby hai naaa 🥺✨\nAb meri baat mano aur YES pe tap karo 💋",
+            "Okay fine 😤❤️\nBut honestly… you already own my heart.\nSo technically… you don't even have the option to say no anymore 😌\nNow press YES and make it official."
+        ];
+
+        // Populate floating hearts
+        function createFloatingHearts() {
+            const container = document.getElementById('floatingHearts');
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = '❤️';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.top = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 6 + 's';
+                heart.style.animationDuration = (6 + Math.random() * 4) + 's';
+                container.appendChild(heart);
+            }
+        }
+
+        // Create falling heart SVG
+        function createFallingHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'falling-heart';
+            
+            const size = 20 + Math.random() * 40;
+            const startX = Math.random() * window.innerWidth;
+            const duration = 8 + Math.random() * 6;
+            
+            heart.style.left = startX + 'px';
+            heart.style.top = '-50px';
+            heart.style.width = size + 'px';
+            heart.style.height = size + 'px';
+            
+            // Create SVG heart
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('viewBox', '0 0 100 100');
+            svg.setAttribute('width', '100%');
+            svg.setAttribute('height', '100%');
+            
+            const colors = ['#c41e3a', '#ff1744', '#e91e63', '#8b1538', '#d4324f', '#f50057', '#ff6b9d'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('d', 'M50,90 C20,70 5,55 5,40 C5,25 15,15 25,15 C35,15 45,25 50,35 C55,25 65,15 75,15 C85,15 95,25 95,40 C95,55 80,70 50,90 Z');
+            path.setAttribute('fill', color);
+            path.setAttribute('opacity', '0.9');
+            
+            svg.appendChild(path);
+            heart.appendChild(svg);
+            heartsContainer.appendChild(heart);
+            
+            // Animate the heart falling
+            let startTime = Date.now();
+            const animationFrame = () => {
+                const elapsed = (Date.now() - startTime) / 1000;
+                const progress = elapsed / duration;
+                
+                if (progress >= 1) {
+                    heart.remove();
+                    return;
+                }
+                
+                const yPos = progress * window.innerHeight;
+                const rotation = progress * 360;
+                const wobble = Math.sin(progress * Math.PI * 3) * 30;
+                
+                heart.style.transform = `translateY(${yPos}px) translateX(${wobble}px) rotateZ(${rotation}deg)`;
+                heart.style.opacity = Math.max(0, 1 - progress);
+                
+                requestAnimationFrame(animationFrame);
+            };
+            
+            requestAnimationFrame(animationFrame);
+        }
+
+        // Start continuous heart falling
+        function startHeartRain() {
+            if (heartIntervalId) clearInterval(heartIntervalId);
+            heartIntervalId = setInterval(() => {
+                if (certificateContainer.classList.contains('show')) {
+                    for (let i = 0; i < 5; i++) {
+                        setTimeout(() => createFallingHeart(), i * 100);
+                    }
+                }
+            }, 400);
+        }
+
+        // Handle NO button clicks
+        noBtn.addEventListener('click', () => {
+            if (noClickCount < responses.length - 1) {
+                noClickCount++;
+                responseText.textContent = responses[noClickCount];
+                responseText.style.opacity = '1';
+
+                // Grow YES button
+                const currentSize = 1 + (noClickCount * 0.15);
+                yesBtn.style.transform = `scale(${currentSize})`;
+                yesBtn.style.boxShadow = `0 8px 25px rgba(196, 30, 58, 0.5),
+                                         inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                                         0 0 ${30 + noClickCount * 10}px rgba(255, 23, 68, ${0.4 + noClickCount * 0.1})`;
+
+                // Shrink NO button
+                const noScale = Math.max(0.3, 1 - (noClickCount * 0.18));
+                noBtn.style.transform = `scale(${noScale})`;
+                noBtn.style.opacity = Math.max(0, 1 - (noClickCount * 0.25));
+
+                if (noClickCount >= responses.length - 2) {
+                    noBtn.style.pointerEvents = 'none';
+                    noBtn.style.opacity = '0';
+                }
+            }
+        });
+
+        // Handle YES button click
+        yesBtn.addEventListener('click', () => {
+            triggerProposal();
+        });
+
+        function triggerProposal() {
+            // Hide intro, show certificate
+            introContainer.classList.add('hidden');
+            certificateContainer.classList.add('show');
+
+            // Start heart rain
+            startHeartRain();
+        }
+
+        // Initialize
+        createFloatingHearts();
+    </script>
+</body>
+</html>
